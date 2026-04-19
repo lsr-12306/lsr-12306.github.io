@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>数字展销平台-春韵</title>
+    <!-- 关联CSS样式文件，路径必须正确 -->
+    <link rel="stylesheet" href="css/lab2-2504-134-index.css">
+</head>
+<body>
+    <!-- 1. 头部区域：Logo + 导航菜单（固定+浮动布局） -->
+    <header class="header">
+        <div class="logo">
+            <img src="img/logo.png" alt="网站Logo">
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">图书分类</a></li>
+                <li><a href="#">热门推荐</a></li>
+                <li><a href="#">新书上市</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. 主体内容区：三栏浮动布局 -->
+    <main class="main">
+        <!-- 左侧栏：图书分类导航（相对定位） -->
+        <aside class="left-bar">
+            <h3>图书分类</h3>
+            <ul>
+                <li><a href="#">文学小说</a></li>
+                <li><a href="#">计算机技术</a></li>
+                <li><a href="#">经管励志</a></li>
+                <li><a href="#">生活艺术</a></li>
+                <li><a href="#">少儿读物</a></li>
+            </ul>
+        </aside>
+
+        <!-- 中间栏：图书展示区 -->
+        <section class="center-bar">
+            <!-- 热门推荐（浮动排列） -->
+            <div class="hot-book">
+                <h3>热门推荐</h3>
+                <div class="book-list">
+                    <div class="book-item">
+                        <img src="img/book1.jpg" alt="图书1">
+                        <h4>网页设计基础与实战</h4>
+                        <p>￥99.00</p>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/book2.jpg" alt="图书2">
+                        <h4>C++语言程序设计</h4>
+                        <p>￥89.00</p>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/book3.jpg" alt="图书3">
+                        <h4>人工智能导论</h4>
+                        <p>￥79.00</p>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/book4.jpg" alt="图书4">
+                        <h4>高等数学</h4>
+                        <p>￥128.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新书上市（Table布局） -->
+            <div class="new-book">
+                <h3>新书上市</h3>
+                <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                        <th>封面</th>
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>价格</th>
+                    </tr>
+                    <tr>
+                        <td><img src="img/book5.jpg" alt="图书5" width="80"></td>
+                        <td>大学物理</td>
+                        <td>赵近芳</td>
+                        <td>￥69.00</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/book6.jpg" alt="图书6" width="80"></td>
+                        <td>离散数学</td>
+                        <td>张小峰</td>
+                        <td>￥79.00</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 右侧栏：促销信息（固定定位） -->
+        <aside class="right-bar">
+            <h3>限时促销</h3>
+            <p>全场满300减30</p>
+            <p>新书8折起</p>
+            <img src="img/promotion.png" alt="促销海报" width="160">
+        </aside>
+    </main>
+</body>
+</html>
