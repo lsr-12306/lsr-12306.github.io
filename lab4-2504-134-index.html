@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>数字展销平台-春韵</title>
+    <!-- 实验4 CSS 文件 -->
+    <link rel="stylesheet" href="css/lab4-2504-134-index.css">
+</head>
+<body>
+    <!-- 1. 头部区域：Logo + 导航菜单（固定+浮动布局） -->
+    <header class="header">
+        <div class="logo">
+            <img src="img/logo.png" alt="网站Logo">
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">图书分类</a></li>
+                <li><a href="#">热门推荐</a></li>
+                <li><a href="#">新书上市</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </nav>
+
+        <!-- 购物车、搜索图标 + 登录/注册按钮 -->
+        <div class="header-icons">
+            <span class="icon cart-icon">🛒</span>
+            <span class="icon search-icon">🔍</span>
+        </div>
+        <div class="login-btn" id="openLoginBtn">登录 / 注册</div>
+    </header>
+
+    <!-- 2. 主体内容区：三栏浮动布局 -->
+    <main class="main">
+        <!-- 左侧栏：图书分类导航（相对定位） -->
+        <aside class="left-bar">
+            <h3>图书分类</h3>
+            <ul>
+                <li><a href="#">文学小说</a></li>
+                <li><a href="#">计算机技术</a></li>
+                <li><a href="#">经管励志</a></li>
+                <li><a href="#">生活艺术</a></li>
+                <li><a href="#">少儿读物</a></li>
+            </ul>
+        </aside>
+
+        <!-- 中间栏：图书展示区 -->
+        <section class="center-bar">
+            <!-- 轮播图区域 -->
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <img src="img/banner1.jpg" alt="轮播1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/banner2.jpg" alt="轮播2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/banner3.jpg" alt="轮播3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 热门推荐（浮动排列） -->
+            <div class="hot-book">
+                <h3>热门推荐</h3>
+                <div class="book-list">
+                    <div class="book-item">
+                        <img src="img/book1.jpg" alt="图书1">
+                        <h4>网页设计基础与实战</h4>
+                        <p>￥99.00</p>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/book2.jpg" alt="图书2">
+                        <h4>C++语言程序设计</h4>
+                        <p>￥89.00</p>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/book3.jpg" alt="图书3">
+                        <h4>人工智能导论</h4>
+                        <p>￥79.00</p>
+                    </div>
+                    <div class="book-item">
+                        <img src="img/book4.jpg" alt="图书4">
+                        <h4>高等数学</h4>
+                        <p>￥128.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新书上市（Table布局） -->
+            <div class="new-book">
+                <h3>新书上市</h3>
+                <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                        <th>封面</th>
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>价格</th>
+                    </tr>
+                    <tr>
+                        <td><img src="img/book5.jpg" alt="图书5" width="80"></td>
+                        <td>大学物理</td>
+                        <td>赵近芳</td>
+                        <td>￥69.00</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/book6.jpg" alt="图书6" width="80"></td>
+                        <td>离散数学</td>
+                        <td>张小峰</td>
+                        <td>￥79.00</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 右侧栏：促销信息（固定定位） -->
+        <aside class="right-bar">
+            <h3>限时促销</h3>
+            <p>全场满300减30</p>
+            <p>新书8折起</p>
+            <img src="img/promotion.png" alt="促销海报" width="160">
+        </aside>
+    </main>
+
+    <!-- =====登录注册弹窗（父相子绝） ===== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="login-modal" id="loginModal">
+            <!-- 登录表单 -->
+            <div class="login-form" id="loginForm">
+                <h2>用户登录</h2>
+                <input type="text" id="loginUsername" placeholder="请输入用户名">
+                <input type="password" id="loginPassword" placeholder="请输入密码">
+                <button class="btn" id="loginBtn">登录</button>
+                <p>没有账号？<span class="link" id="goRegister">立即注册</span></p>
+            </div>
+
+            <!-- 注册表单 -->
+            <div class="register-form" id="registerForm">
+                <h2>用户注册</h2>
+                <input type="text" id="regUsername" placeholder="请输入用户名">
+                <input type="password" id="regPwd" placeholder="请输入密码">
+                <input type="password" id="regPwd2" placeholder="确认密码">
+                <button class="btn" id="registerBtn">注册</button>
+                <p>已有账号？<span class="link" id="goLogin">立即登录</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================== （本地存储 + 登录验证） ====================== -->
+    <script>
+        // 获取元素
+        const modalOverlay = document.getElementById("modalOverlay");
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+        const openLoginBtn = document.getElementById("openLoginBtn");
+        const goRegister = document.getElementById("goRegister");
+        const goLogin = document.getElementById("goLogin");
+        const loginBtn = document.getElementById("loginBtn");
+        const registerBtn = document.getElementById("registerBtn");
+
+        // 打开登录弹窗
+        openLoginBtn.onclick = function () {
+            modalOverlay.style.display = "block";
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+        };
+
+        // 切换到注册
+        goRegister.onclick = function () {
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+        };
+
+        // 切换到登录
+        goLogin.onclick = function () {
+            registerForm.style.display = "none";
+            loginForm.style.display = "block";
+        };
+
+        // 点击空白关闭弹窗
+        modalOverlay.onclick = function (e) {
+            if (e.target === modalOverlay) {
+                modalOverlay.style.display = "none";
+            }
+        };
+
+        // 注册功能
+        registerBtn.onclick = function () {
+            let user = document.getElementById("regUsername").value.trim();
+            let pwd = document.getElementById("regPwd").value.trim();
+            let pwd2 = document.getElementById("regPwd2").value.trim();
+
+            if (!user || !pwd || !pwd2) {
+                alert("请填写完整信息！");
+                return;
+            }
+            if (pwd !== pwd2) {
+                alert("两次密码不一致！");
+                return;
+            }
+
+            // 读取本地用户列表
+            let users = JSON.parse(localStorage.getItem("users") || "[]");
+            let hasUser = users.some(item => item.username === user);
+
+            if (hasUser) {
+                alert("用户名已存在！");
+                return;
+            }
+
+            // 保存用户
+            users.push({ username: user, password: pwd });
+            localStorage.setItem("users", JSON.stringify(users));
+            alert("注册成功！请登录");
+            
+            // 切换到登录
+            registerForm.style.display = "none";
+            loginForm.style.display = "block";
+        };
+
+        // 登录功能
+        loginBtn.onclick = function () {
+            let user = document.getElementById("loginUsername").value.trim();
+            let pwd = document.getElementById("loginPassword").value.trim();
+
+            if (!user || !pwd) {
+                alert("请输入用户名和密码！");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users") || "[]");
+            let target = users.find(item => item.username === user && item.password === pwd);
+
+            if (target) {
+                alert("登录成功！欢迎你：" + user);
+                modalOverlay.style.display = "none";
+                openLoginBtn.innerText = "欢迎，" + user;
+            } else {
+                alert("用户名或密码错误！");
+            }
+        };
+    </script>
+</body>
+</html>
